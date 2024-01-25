@@ -94,14 +94,11 @@
     <h1>Hi {{ user.username }}</h1>
     <h4>you are successfully logged in</h4>
     <button type="submit"><a href="/signout">Signout</a></button>
-    <h4>
-      Here are you preferences:
-      <!-- {{user.preferences}} -->
-    </h4>
-    <h4>
-      Here are you subscriptions:
-      <!-- {{user.subscriptions}} -->
-    </h4>
+    <h4>Here are you preferences: {{user.preferences}}</h4>
+    <button onclick="window.location.href='/addPreference'">
+      Add preference
+    </button>
+    <h4>Here are you subscriptions: {{user.subscriptions}}</h4>
     {% else %}
     <button type="submit"><a href="/signup">SignUP</a></button>
     <button type="submit"><a href="/signin">Signin</a></button>

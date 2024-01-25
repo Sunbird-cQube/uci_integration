@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
-from django.contrib.auth.models import User
+from authentication.models import User  # Import the correct User model
 import django.contrib.messages as messages
 from django.contrib.auth import authenticate, login, logout
 
@@ -30,7 +30,6 @@ def signup(request):
     return render(request, 'authentication/signup.html')
 
 def signin(request):
-
     if request.method == 'POST':
         userName = request.POST['userName']
         password = request.POST['password']
@@ -53,3 +52,16 @@ def signout(request):
     logout(request)
     messages.success(request, "Sign out successful")
     return redirect('home')
+
+def addPreference(request):
+    if request.method == 'POST':
+        preferences = request.POST.getlist('preference')  # Get the preference array from the request
+        myUser = request.user  # Assuming the authenticated user is accessing this function
+        myUser.preferences = preferences
+        myUser.save()
+
+        messages.success(request, "Preferences added successfully")
+
+        return redirect('home')
+
+    return render(request, 'authentication/add_preference.html')

@@ -25,6 +25,7 @@ npm # for docs
 this is optional but recommended to keep dependencies separate and remove any conflicts
 
 ```bash
+python3 -m venv venv
 source venv/bin/activate
 ```
 

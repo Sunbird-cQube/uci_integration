@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>add preference</title>
+  </head>
+  <body>
+    <form action="/addPreference/" method="post">
+      {% csrf_token %}
+      <input type="radio" id="email" name="preference" value="email" />
+      <label for="email">Email</label><br />
+      <input type="radio" id="sms" name="preference" value="sms" />
+      <label for="sms">SMS</label><br />
+      <input type="radio" id="whatsapp" name="preference" value="whatsapp" />
+      <label for="whatsapp">WhatsApp</label><br />
+      <input type="radio" id="telegram" name="preference" value="telegram" />
+      <label for="telegram">Telegram</label><br />
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>
