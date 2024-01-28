@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from authentication.models import User  # Import the correct User model
 import django.contrib.messages as messages
 from django.contrib.auth import authenticate, login, logout
+from authentication.models import Subscription
 
 def home(request):
     return render(request, 'authentication/index.html')
@@ -15,12 +16,15 @@ def signup(request):
         email = request.POST['email']
         password = request.POST['password']
         confirmPassword = request.POST['confirmPassword']
+        userType = request.POST['userType']
+        print(userType)
         # subscriptions = request.POST('subscriptions')
         # preferences = request.POST('preferences')
 
         myUser = User.objects.create_user(userName, email, password)
         myUser.first_name = firstName
         myUser.last_name = lastName
+        myUser.type = userType
         
         myUser.save()
         messages.success(request, "User created successfully")
@@ -65,3 +69,18 @@ def addPreference(request):
         return redirect('home')
 
     return render(request, 'authentication/add_preference.html')
+
+def addSubscription(request):
+    if request.method == 'POST':
+        subscription_id = request.POST['subscription_id']
+        myUser = request.user
+        try:
+            subscription = Subscription.objects.get(id=subscription_id)
+            myUser.subscription.add(subscription)
+            myUser.save()
+            messages.success(request, "Subscription added successfully")
+        except Subscription.DoesNotExist:
+            messages.error(request, "Subscription not found")
+        return redirect('home')
+
+    return render(request, 'authentication/add_subscription.html')

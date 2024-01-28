@@ -90,18 +90,24 @@
 
     <h1>Welcome to UCI integration</h1>
 
-    {% if user.is_authenticated %}
+    {% if user.is_authenticated %} {% if user.type == "admin" or "Admin" %}
+    <div>Welcome admin</div>
+    <!-- make subscriptions, send emails so on.... -->
+    {% else %}
     <h1>Hi {{ user.username }}</h1>
-    <h4>you are successfully logged in</h4>
-    <button type="submit"><a href="/signout">Signout</a></button>
-    <h4>Here are you preferences: {{user.preferences}}</h4>
+    <h4>You are successfully logged in</h4>
+    <button type="submit"><a href="/signout">Sign out</a></button>
+    <h4>Here are your preferences: {{ user.preferences }}</h4>
     <button onclick="window.location.href='/addPreference'">
       Add preference
     </button>
-    <h4>Here are you subscriptions: {{user.subscriptions}}</h4>
-    {% else %}
-    <button type="submit"><a href="/signup">SignUP</a></button>
-    <button type="submit"><a href="/signin">Signin</a></button>
+    <h4>Here are your subscriptions: {{ user.subscriptions }}</h4>
+    <button onclick="window.location.href='/addSubscription'">
+      Add subscription
+    </button>
+    {% endif %} {% else %}
+    <button type="submit"><a href="/signup">Sign up</a></button>
+    <button type="submit"><a href="/signin">Sign in</a></button>
     {% endif %}
   </body>
 </html>
