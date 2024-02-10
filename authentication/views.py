@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from authentication.models import User  # Import the correct User model
+from authentication.models import User
 import django.contrib.messages as messages
 from django.contrib.auth import authenticate, login, logout
 from authentication.models import Subscription, Alert
@@ -9,16 +9,42 @@ from django.shortcuts import get_object_or_404
 from django.utils.timezone import now
 
 def home(request):
+    """
+    Renders the home page based on user authentication and type.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The HTTP response object containing the rendered template.
+
+    Raises:
+        None
+    """
+    
     if request.user.is_authenticated:
         fname = request.user.first_name
         if request.user.type == 'admin':
             return render(request, 'authentication/adminDashboard.html', {'fname': fname})
         else:
             return render(request, 'authentication/userDashboard.html', {'fname': fname})
+
     return render(request, 'authentication/index.html')
 
 
 def signup(request):
+    """
+    Handles user signup.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The HTTP response object.
+
+    Raises:
+        None
+    """
     if request.method == 'POST':
         userName = request.POST['userName']
         firstName = request.POST['firstName']
@@ -44,6 +70,18 @@ def signup(request):
     return render(request, 'authentication/signup.html')
 
 def signin(request):
+    """
+    Handles user signin.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The HTTP response object.
+
+    Raises:
+        None
+    """
     if request.method == 'POST':
         userName = request.POST['userName']
         password = request.POST['password']
@@ -67,15 +105,40 @@ def signin(request):
 
 @login_required
 def signout(request):
+    """
+    Handles user signout.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+
+    Returns:
+        HttpResponse: The HTTP response object.
+
+    Raises:
+        None
+    """
     logout(request)
     messages.success(request, "Sign out successful")
     return redirect('home')
 
 @login_required
 def addPreference(request):
+    """
+    Adds preferences to the authenticated user.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        new prefrence
+
+    Returns:
+        HttpResponse: The HTTP response object.
+
+    Raises:
+        None
+    """
     if request.method == 'POST':
-        preferences = request.POST.getlist('preference')  # Get the preference array from the request
-        myUser = request.user  # Assuming the authenticated user is accessing this function
+        preferences = request.POST.getlist('preference')
+        myUser = request.user
         myUser.preferences = preferences
         myUser.save()
 
@@ -87,6 +150,19 @@ def addPreference(request):
 
 @login_required
 def addSubscription(request):
+    """
+    Adds a subscription to the authenticated user.
+
+    Args:
+        request (HttpRequest): The HTTP request object. 
+        subscription_id (int): The id of the new subscription to add to user.
+
+    Returns:
+        HttpResponse: The HTTP response object.
+
+    Raises:
+        None
+    """
     if request.method == 'POST':
         subscription_id = request.POST['subscription_id']
         myUser = request.user
@@ -103,6 +179,20 @@ def addSubscription(request):
 
 @login_required
 def createSubscription(request):
+    """
+    Creates a new subscription and associates it with the current user.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        subscriptionName (string): The name of the new subscription to create.
+        subscriptionName (string): The name of org the new subscription is of.
+
+    Returns:
+        HttpResponse: The HTTP response object.
+
+    Raises:
+        None
+    """
     if request.method == 'POST':
         orgName = request.POST.get('orgName')
         subscriptionName = request.POST.get('subscriptionName')
@@ -125,6 +215,19 @@ def createSubscription(request):
 
 @login_required
 def editSubscription(request, subscription_id):
+    """
+    Edits an existing subscription.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        subscription_id (int): The ID of the subscription to edit.
+
+    Returns:
+        HttpResponse: The HTTP response object.
+
+    Raises:
+        None
+    """
     subscription = get_object_or_404(Subscription, id=subscription_id)
 
     if request.method == 'POST':
@@ -144,6 +247,19 @@ def editSubscription(request, subscription_id):
 
 @login_required
 def deleteSubscription(request, subscription_id):
+    """
+    Deletes an existing subscription.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        subscription_id (int): The ID of the subscription to delete.
+
+    Returns:
+        HttpResponse: The HTTP response object.
+
+    Raises:
+        None
+    """
     try:
         subscription = Subscription.objects.get(id=subscription_id)
         subscription.delete()
@@ -154,6 +270,19 @@ def deleteSubscription(request, subscription_id):
 
 @login_required
 def sendMessage(request, subscription_id):
+    """
+    Sends a message to users subscribed to a specific subscription.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        subscription_id (int): The ID of the subscription.
+
+    Returns:
+        HttpResponse: The HTTP response object.
+
+    Raises:
+        None
+    """
     if request.method == 'POST':
         print(request.user.type)
         if request.user.type == 'admin':
