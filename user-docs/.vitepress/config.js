@@ -10,7 +10,8 @@ module.exports = {
             {
                 text: "Getting Started",
                 items: [
-                    { text: "Get Started", link: "/" },
+                    { text: "Home", link: "/" },
+                    { text: "Get Started", link: "/gettingStarted" },
                     { text: "UseCase", link: "/usecase" },
                 ]
             }

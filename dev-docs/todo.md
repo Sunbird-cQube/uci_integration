@@ -13,16 +13,17 @@
 - Phase 1:
 
   - [x] Setup Django and make basic authentication
-  - [ ] Make schema
-  - [ ] Complete subscription model
-  - [ ] Add google OAuth2
-  - [ ] Test workflow
-  - [ ] Create admin user-types
-  - [ ] Test user and admin flow
-  - [ ] Write tests (unit + integration)
-  - [ ] Document Dev Docs
-  - [ ] Final testing + UI improvements
-  - [ ] End user documentation
+  - [x] Make schema
+  - [x] Complete subscription model
+  - [ ] Add google OAuth2 `(TBD)`
+  - [x] Test workflow
+  - [x] Create admin user-types
+  - [x] Test user and admin flow
+  - [ ] Write unit tests
+  - [ ] Write integration test
+  - [x] Document Dev Docs
+  - [x] Final testing + UI improvements
+  - [x] End user documentation
 
 - Phase 2:
   - [ ] Integrate with cQube, UCI (TBD)
