@@ -3,4 +3,7 @@ data/
 dev-docs/node_modules/
 dev-docs/.vitepress/dist/
 dev-docs/.vitepress/cache/
+user-docs/node_modules/
+user-docs/.vitepress/dist/
+user-docs/.vitepress/cache/
 dist/
