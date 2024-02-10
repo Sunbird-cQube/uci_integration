@@ -9,4 +9,6 @@ urlpatterns = [
     path('signout/', views.signout, name='signout'),
     path('addPreference/', views.addPreference, name='addPreference'),
     path('addSubscription/', views.addSubscription, name='addSubscription'),
+    path('createSubscription/', views.createSubscription, name='createSubscription'),
+    path('sendMessage/', views.sendMessage, name='sendMessage')
 ]

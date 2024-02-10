@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Send Message</title>
+  </head>
+  <body>
+    <h1>Send Message to Subscribers</h1>
+    <form action="/sendMessage" method="post">
+      {% csrf_token %}
+      <label for="subscriptionId">Subscription ID:</label>
+      <input type="text" id="subscriptionId" name="subscriptionId" required />
+      <br />
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" required></textarea>
+      <br />
+      <input type="submit" value="Send" />
+    </form>
+  </body>
+</html>

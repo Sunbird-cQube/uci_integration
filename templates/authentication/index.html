@@ -92,6 +92,16 @@
 
     {% if user.is_authenticated %} {% if user.type == "admin" or "Admin" %}
     <div>Welcome admin</div>
+    <h1>Hi {{ user.username }}</h1>
+    <h4>You are successfully logged in</h4>
+    <button type="submit"><a href="/signout">Sign out</a></button>
+
+    <h4>Here are your created subscriptions: {{ user.subscriptions }}</h4>
+    <button onclick="window.location.href='/createSubscription'">
+      Create subscription
+    </button>
+
+    <button onclick="window.location.href='/sendMessage'">Create Alert</button>
     <!-- make subscriptions, send emails so on.... -->
     {% else %}
     <h1>Hi {{ user.username }}</h1>

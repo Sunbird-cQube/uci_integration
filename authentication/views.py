@@ -84,3 +84,30 @@ def addSubscription(request):
         return redirect('home')
 
     return render(request, 'authentication/add_subscription.html')
+
+def createSubscription(request):
+    # make subscription and let admin send message
+    if request.method=='POST':
+        orgName = request.POST['orgName']
+        SubscriptionName = request.POST['subscriptionName']
+
+        mySubscription = request.objects.createSubscription(orgName, SubscriptionName)
+        mySubscription.orgName = orgName
+        mySubscription.subscriptionName = SubscriptionName
+
+        mySubscription.save()
+        messages.success(request, 'created subscription')
+
+        redirect('home')
+
+    return render(request, 'authentication/createSubscription.html')
+
+def sendMessage(request):
+    if request.method=='POST':
+        subscription_id = request.POST['subscriptionId']
+        message = request.POST['message']
+
+        subscription = Subscription.objects.get(id=subscription_id)
+        redirect('home')
+        # if yes, make alert
+    return render(request, 'authentication/sendMessage.html')
