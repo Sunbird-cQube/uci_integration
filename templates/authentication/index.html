@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Authentication</title>
+    <style>
+      .alert {
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+      }
+
+      .alert-success {
+        color: #155724;
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+      }
+
+      .alert-dismissible {
+        position: relative;
+        padding-right: 35px;
+        margin-bottom: 1rem;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+      }
+
+      .close {
+        float: right;
+        font-size: 1.5rem;
+        font-weight: 700;
+        line-height: 1;
+        color: #000;
+        text-shadow: 0 1px 0 #fff;
+        opacity: 0.5;
+      }
+
+      .close:hover {
+        color: #000;
+        text-decoration: none;
+        opacity: 0.75;
+      }
+
+      h1 {
+        color: #333;
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      h4 {
+        color: #666;
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+
+      button a {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .button-container {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    {% for message in messages %}
+    <div
+      class="alert alert-{{ message.tags }} alert-dismissible fade show"
+      role="alert"
+    >
+      <strong>Message:</strong> {{ message }}
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="close"
+      >
+        <span aria-hidden="true"> &times; </span>
+      </button>
+    </div>
+    {% endfor %}
+
+    <h1>Welcome to UCI integration</h1>
+
+    <div class="button-container">
+      <button type="submit"><a href="/signup">Sign up</a></button>
+      <button type="submit"><a href="/signin">Sign in</a></button>
+      <button type="submit">
+        <a href="https://uci-integration-user.vercel.app/">User Docs</a>
+      </button>
+      <button type="submit">
+        <a href="https://uci-integration.vercel.app/">Dev Docs</a>
+      </button>
+    </div>
+  </body>
+</html>

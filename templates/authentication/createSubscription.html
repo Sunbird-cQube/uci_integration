@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Subscription</title>
+  </head>
+  <body>
+    <form action="/createSubscription/" method="post">
+      {% csrf_token %}
+      <label for="orgname">Organization Name:</label>
+      <input type="text" id="orgName" name="orgName" /><br /><br />
+
+      <label for="subscriptionName">Subscription Name:</label>
+      <input
+        type="text"
+        id="subscriptionName"
+        name="subscriptionName"
+      /><br /><br />
+
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignIN</title>
+    <style>
+        /* Add your CSS styles here */
+        .alert {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .alert-success {
+            color: #155724;
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+
+        .alert-danger {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    {% for message in messages %}
+    <div class="alert alert-{{ messages.tags }} alert-dismissible fade show" role="alert">
+        <strong>Message:</strong> {{ message }} z
+        <button type="button" class="close" data-dismiss="alert" aria-label="close"> 
+            <span aria-hidden="true"> &times; </span> 
+        </button>
+    </div>
+    {% endfor %}
+
+    <h1>SignIN</h1>
+
+    <form action="/signin/" method="post">
+        {% csrf_token %}
+
+        <label for="username">Username</label>
+        <input type="text" name="userName" id="username" placeholder="Enter your username" required> <br>
+
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" placeholder="Enter your password" required> <br>
+
+        <button type="submit">Sign IN</button>
+    </form>
+</body>
+</html>

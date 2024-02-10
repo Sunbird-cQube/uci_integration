@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SignUP</title>
+    <style>
+      /* Add your CSS styles here */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+
+      form {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      button[type="submit"] {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .alert {
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 5px;
+      }
+
+      .alert-success {
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+        color: #155724;
+      }
+
+      .alert-danger {
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+        color: #721c24;
+      }
+
+      .close {
+        float: right;
+        font-size: 20px;
+        font-weight: bold;
+        line-height: 1;
+        color: #000;
+        text-shadow: 0 1px 0 #fff;
+        opacity: 0.5;
+      }
+
+      .close:hover {
+        color: #000;
+        text-decoration: none;
+        opacity: 0.75;
+      }
+    </style>
+  </head>
+  <body>
+    {% for message in messages %}
+    <div
+      class="alert alert-{{ messages.tags }} alert-dismissible fade show"
+      role="alert"
+    >
+      <strong>Message:</strong> {{ message }}
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="close"
+      >
+        <span aria-hidden="true"> &times; </span>
+      </button>
+    </div>
+    {% endfor %}
+
+    <h1>SignUP</h1>
+
+    <form action="/signup/" method="post">
+      {% csrf_token %}
+
+      <label for="username">Username</label>
+      <input
+        type="text"
+        name="userName"
+        id="username"
+        placeholder="Enter your username"
+        required
+      />
+      <br />
+
+      <label for="firstName">firstName</label>
+      <input
+        type="text"
+        name="firstName"
+        id="firstName"
+        placeholder="Enter your firstName"
+        required
+      />
+      <br />
+
+      <label for="lastname">lastname</label>
+      <input
+        type="text"
+        name="lastName"
+        id="lastName"
+        placeholder="Enter your lastname"
+        required
+      />
+      <br />
+
+      <label for="email">Email</label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="Enter your Email"
+        required
+      />
+      <br />
+
+      <label for="password">Password</label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="Enter your password"
+        required
+      />
+      <br />
+
+      <label for="confirm_password">Confirm Password</label>
+      <input
+        type="password"
+        name="confirmPassword"
+        id="confirm_password"
+        placeholder="Confirm your password"
+        required
+      />
+      <br />
+      <input type="radio" id="userType" name="userType" value="user" checked />
+      <label for="user">user</label><br />
+      <input type="radio" id="userType" name="userType" value="admin" />
+      <label for="admin">admin</label><br />
+
+      <!-- <label for="subscriptions">Subscriptions</label>
+        <input type="text" name="subscriptions" id="subscriptions" placeholder="What services you want to know about? Provide their Id's" required> <br>
+
+        <label for="preferences">preferences</label>
+        <input type="text" name="preferences" id="preferences" placeholder="Write preferences: whatsapp, sms, email, telegram" required> <br> -->
+
+      <button type="submit">SignUP</button>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .alert {
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid transparent;
+      border-radius: 4px;
+    }
+
+    .alert-success {
+      color: #155724;
+      background-color: #d4edda;
+      border-color: #c3e6cb;
+    }
+
+    .alert-dismissible {
+      position: relative;
+      padding-right: 35px;
+      margin-bottom: 1rem;
+      border: 1px solid transparent;
+      border-radius: 0.25rem;
+    }
+
+    .close {
+      float: right;
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1;
+      color: #000;
+      text-shadow: 0 1px 0 #fff;
+      opacity: 0.5;
+    }
+
+    .close:hover {
+      color: #000;
+      text-decoration: none;
+      opacity: 0.75;
+    }
+
+    h1 {
+      color: #333;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    h4 {
+      color: #666;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button a {
+      color: #fff;
+      text-decoration: none;
+    }
+  </style>
+  <body>
+    {% for message in messages %}
+    <div
+      class="alert alert-{{ message.tags }} alert-dismissible fade show"
+      role="alert"
+    >
+      <strong>Message:</strong> {{ message }}
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="close"
+      >
+        <span aria-hidden="true"> &times; </span>
+      </button>
+    </div>
+    {% endfor %} {% if user.is_authenticated %}
+    <h1>Hi {{ user.username }}</h1>
+    <h4>You are successfully logged in</h4>
+    <button type="submit"><a href="/signout">Sign out</a></button>
+    <h4>Here are your preferences: {{ user.preferences }}</h4>
+    <button onclick="window.location.href='/addPreference'">
+      Add preference
+    </button>
+    <h4>Here are your subscriptions: {{ user.subscriptions }}</h4>
+    <button onclick="window.location.href='/addSubscription'">
+      Add subscription
+    </button>
+    {% endif %}
+  </body>
+</html>
