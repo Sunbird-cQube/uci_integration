@@ -5,6 +5,12 @@ class Subscription(models.Model):
     name = models.CharField(max_length=255)
     org = models.CharField(max_length=255)
 
+class Alert(models.Model):
+    subscription = models.ForeignKey(Subscription, on_delete=models.CASCADE)
+    message = models.TextField()
+    date = models.DateField()
+    users = models.ManyToManyField('User')
+
 class User(AbstractUser):
     subscription = models.ManyToManyField(Subscription)
     org = models.CharField(max_length=255)

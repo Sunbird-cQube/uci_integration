@@ -10,5 +10,7 @@ urlpatterns = [
     path('addPreference/', views.addPreference, name='addPreference'),
     path('addSubscription/', views.addSubscription, name='addSubscription'),
     path('createSubscription/', views.createSubscription, name='createSubscription'),
-    path('sendMessage/', views.sendMessage, name='sendMessage')
+    path('editSubscription/<int:subscription_id>/', views.editSubscription, name='editSubscription'),
+    path('deleteSubscription/<int:subscription_id>/', views.deleteSubscription, name='deleteSubscription'),
+    path('sendMessage/<int:subscription_id>/', views.sendMessage, name='sendMessage'),
 ]

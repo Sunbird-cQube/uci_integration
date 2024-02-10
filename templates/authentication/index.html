@@ -73,7 +73,7 @@
   <body>
     {% for message in messages %}
     <div
-      class="alert alert-{{ messages.tags }} alert-dismissible fade show"
+      class="alert alert-{{ message.tags }} alert-dismissible fade show"
       role="alert"
     >
       <strong>Message:</strong> {{ message }}
@@ -90,34 +90,7 @@
 
     <h1>Welcome to UCI integration</h1>
 
-    {% if user.is_authenticated %} {% if user.type == "admin" or "Admin" %}
-    <div>Welcome admin</div>
-    <h1>Hi {{ user.username }}</h1>
-    <h4>You are successfully logged in</h4>
-    <button type="submit"><a href="/signout">Sign out</a></button>
-
-    <h4>Here are your created subscriptions: {{ user.subscriptions }}</h4>
-    <button onclick="window.location.href='/createSubscription'">
-      Create subscription
-    </button>
-
-    <button onclick="window.location.href='/sendMessage'">Create Alert</button>
-    <!-- make subscriptions, send emails so on.... -->
-    {% else %}
-    <h1>Hi {{ user.username }}</h1>
-    <h4>You are successfully logged in</h4>
-    <button type="submit"><a href="/signout">Sign out</a></button>
-    <h4>Here are your preferences: {{ user.preferences }}</h4>
-    <button onclick="window.location.href='/addPreference'">
-      Add preference
-    </button>
-    <h4>Here are your subscriptions: {{ user.subscriptions }}</h4>
-    <button onclick="window.location.href='/addSubscription'">
-      Add subscription
-    </button>
-    {% endif %} {% else %}
     <button type="submit"><a href="/signup">Sign up</a></button>
     <button type="submit"><a href="/signin">Sign in</a></button>
-    {% endif %}
   </body>
 </html>

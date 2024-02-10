@@ -1,3 +1,4 @@
+<!-- sendMessage.html -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -7,10 +8,17 @@
   </head>
   <body>
     <h1>Send Message to Subscribers</h1>
-    <form action="/sendMessage" method="post">
+    <form action="/sendMessage/{{ subscription_id }}/" method="post">
       {% csrf_token %}
       <label for="subscriptionId">Subscription ID:</label>
-      <input type="text" id="subscriptionId" name="subscriptionId" required />
+      <input
+        type="text"
+        id="subscriptionId"
+        name="subscriptionId"
+        value="{{ subscription_id }}"
+        readonly
+        required
+      />
       <br />
       <label for="message">Message:</label>
       <textarea id="message" name="message" required></textarea>
