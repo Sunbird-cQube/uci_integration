@@ -28,6 +28,32 @@
 - Phase 2:
   - [ ] Integrate with cQube, UCI (TBD)
 
+## Demo dB schema
+
+::: details Replace with actual dB schema
+
+**user: default with changes:**
+
+- subscription
+- org // might be removed
+- type {choices=[('admin', 'Admin'), ('user', 'User')], default='user')}
+- position // might be removed
+- preferences
+
+**subscription:**
+
+- name of subscription
+- name of org of subscription
+
+**Alert:**
+
+- subscription
+- message
+- date // of creation. change it to created_at
+- users // many. send alert to them
+
+:::
+
 ## Included here:
 
 - FlowChart: application modules/ different sections
@@ -35,33 +61,14 @@
 - Demo dB schema: demo dB schema to use for initial development
 - Admin workflow: Workflow of how admin panel will work
 
-::: warning ADD:
-
-- Figma design of application
-- Add github repo
-
-:::
-
 ## FlowChart
 
 ![FlowChart](/assets/flowchart.png)
 
 ## AuthFlow
 
-![AuthFlow](/assets/authflow.png)
-
-## Demo dB schema
-
-![Demo dB schema](/assets/dbschema.png)
+![User Auth Workflow](/assets/WorkFlow.png)
 
 ## Admin workflow
 
 ![Admin workflow](/assets/adminworkflow.png)
-
-::: warning Replace with figma design
-
-## UI Compoenents
-
-![UI Compoenents](/assets/uicomponents.png)
-
-:::

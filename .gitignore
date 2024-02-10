@@ -6,4 +6,6 @@ dev-docs/.vitepress/cache/
 user-docs/node_modules/
 user-docs/.vitepress/dist/
 user-docs/.vitepress/cache/
+**/.pytest_cache/
 dist/
+db.sqlite3

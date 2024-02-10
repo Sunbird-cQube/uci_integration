@@ -49,6 +49,7 @@ npm install
 - migrate dB
 
 ```bash
+python manage.py makemigrations
 python manage.py migrate
 ```
 
@@ -58,10 +59,23 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-- run the docs
+- test the app
+
+```bash
+python manage.py test
+```
+
+- run the dev docs
 
 ```bash
 cd dev-docs
+npm run dev
+```
+
+- run the user docs
+
+```bash
+cd user-docs
 npm run dev
 ```
 
